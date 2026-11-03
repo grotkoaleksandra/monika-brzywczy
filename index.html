@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monika Brzywczy</title>
+<meta name="description" content="Monika Brzywczy – innovative editor-in-chief, concept developer and producer of publications and events, Warsaw.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Lora:wght@400;500&family=Red+Hat+Display:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111;
+    --muted: #6b6b6b;
+    --rule: #cfcfcf;
+    --paper: #fff;
+    --yellow: #F7CE66;
+    --orange: #F79A68;
+    --coral: #E9705F;
+    --serif: "Lora", Georgia, serif;
+    --text: "Literata", Georgia, serif;
+    --sans: "Red Hat Display", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  a { color: inherit; text-decoration-color: var(--orange); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--coral); }
+
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 40px 20px 72px;
+  }
+
+  /* ---------- Header ---------- */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    margin-bottom: 48px;
+  }
+  .portrait {
+    position: relative;
+    width: 220px;
+    height: 250px;
+    flex: none;
+  }
+  /* Signature shape: big yellow half-circle with a smaller orange one beside it */
+  .portrait::before,
+  .portrait::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    border-radius: 999px 999px 0 0;
+  }
+  .portrait::before {
+    left: 0;
+    width: 200px;
+    height: 100px;
+    background: var(--yellow);
+  }
+  .portrait::after {
+    left: 150px;
+    width: 70px;
+    height: 35px;
+    background: var(--orange);
+    z-index: 0;
+  }
+  .portrait img {
+    position: absolute;
+    left: 25px;
+    bottom: 0;
+    width: 150px;
+    height: 225px;
+    object-fit: cover;
+    object-position: 50% 30%;
+    border-radius: 75px 75px 0 0;
+    z-index: 1;
+    background: #f4f1ea;
+    color: transparent; /* hide alt text if the photo is missing */
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 9vw, 4.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .tagline {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: clamp(1.1rem, 3.6vw, 1.45rem);
+    letter-spacing: 0.02em;
+    margin: 12px 0 0;
+  }
+
+  /* ---------- Sections ---------- */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px 72px;
+  }
+  section { margin-bottom: 40px; }
+  h2 {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 0.95rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  p { margin: 0 0 12px; }
+  .profile p {
+    font-family: var(--text);
+    font-size: 1.02rem;
+    line-height: 1.7;
+  }
+
+  dl { margin: 0; }
+  dt {
+    font-weight: 500;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+  dt:first-child { margin-top: 0; }
+  dd { margin: 4px 0 0; }
+  dd span { white-space: nowrap; }
+  dd span + span::before { content: " · "; color: var(--muted); }
+
+  .plain { list-style: none; margin: 0; padding: 0; }
+  .plain li { margin-bottom: 10px; }
+  .plain small { display: block; color: var(--muted); font-size: 0.9rem; }
+
+  .contact a { font-size: 1.05rem; }
+
+  /* ---------- Experience ---------- */
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline li {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    column-gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #ececec;
+  }
+  .timeline li:last-child { border-bottom: 0; }
+  .marker {
+    grid-row: 1 / span 2;
+    width: 12px;
+    height: 12px;
+    margin-top: 6px;
+    background: var(--c, var(--yellow));
+  }
+  .m-circle { border-radius: 50%; }
+  .m-square { }
+  .m-diamond { transform: rotate(45deg) scale(0.85); }
+  .m-triangle {
+    background: none;
+    width: 0; height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 12px solid var(--c, var(--yellow));
+  }
+  .year {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;
+  }
+  .what {
+    font-family: var(--text);
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  footer {
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  /* ---------- Desktop ---------- */
+  @media (min-width: 860px) {
+    .page { padding: 72px 40px 96px; }
+    .hero {
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 48px;
+      margin-bottom: 64px;
+    }
+    .portrait { width: 280px; height: 320px; }
+    .portrait::before { width: 260px; height: 130px; }
+    .portrait::after { left: 196px; width: 84px; height: 42px; }
+    .portrait img {
+      left: 35px; width: 190px; height: 290px;
+      border-radius: 95px 95px 0 0;
+    }
+    .hero-text { padding-bottom: 18px; }
+    .layout { grid-template-columns: 320px 1fr; }
+    .timeline li {
+      grid-template-columns: 14px 104px 1fr;
+      column-gap: 16px;
+    }
+    .marker { grid-row: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <div class="portrait">
+      <img src="monika-photo.jpg" alt="Portrait of Monika Brzywczy" width="190" height="290">
+    </div>
+    <div class="hero-text">
+      <h1>Monika<br>Brzywczy</h1>
+      <p class="tagline">Innovative editor-in-chief</p>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside>
+      <section class="profile">
+        <h2>Profile</h2>
+        <p>I thrive on making things happen: building contacts, connecting people and promoting new, interesting initiatives. I keep my finger on the pulse and create avant-garde concepts for publications and events. My work is always marked by exceptional aesthetics and in-depth content.</p>
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        <dl>
+          <dt>Languages</dt>
+          <dd><span>English: fluent</span> <span>French: high</span> <span>Russian: basic</span></dd>
+          <dt>Software</dt>
+          <dd><span>MS Office: proficient</span> <span>Adobe CC: basic</span></dd>
+          <dt>Soft skills</dt>
+          <dd>Ability to lead a team, work in a group, recruit new people and refresh the team; in-depth knowledge of the Warsaw journalistic, culinary and cultural environment.</dd>
+        </dl>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <ul class="plain">
+          <li>Gender Studies<small>Warsaw University, ISNS, 1997–1998</small></li>
+          <li>Polish Philology<small>Warsaw University, 1992–1996</small></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Hobbies</h2>
+        <p>Cinema, literature, fashion, design, music, art, culinary arts, wellbeing, yoga</p>
+      </section>
+
+      <section class="contact">
+        <h2>Contact</h2>
+        <!-- Email only until Monika confirms. Phone and street address left out on purpose. -->
+        <p><a href="mailto:brzywczy@gmail.com">brzywczy@gmail.com</a></p>
+      </section>
+    </aside>
+
+    <main>
+      <section>
+        <h2>Experience</h2>
+        <ol class="timeline" id="timeline">
+          <li><span class="year">2026</span><span class="what">Concept development &amp; advising, exhibition promotion, media relations: Edyta Hull “Halloxylon” at Rusiecki Palace, in collaboration with Galeria Piękna.</span></li>
+          <li><span class="year">2013–2026</span><span class="what">Creating the concept and serving as editor-in-chief of the lifestyle magazine USTA (<a href="https://www.ustamagazyn.pl" target="_blank" rel="noopener">www.ustamagazyn.pl</a>), in cooperation with many lifestyle brands.</span></li>
+          <li><span class="year">2023–2026</span><span class="what">Organization of study visits and artist residencies in cooperation with the Austrian Institute.</span></li>
+          <li><span class="year">2018–2025</span><span class="what">Opening and running the author’s vegan Bistro Eden in Warsaw.</span></li>
+          <li><span class="year">2014–2025</span><span class="what">Creating the concept and coordinating themed events at Mysia 3: Flower Festival, Coffee and Tea Festival, Body Festival, Harvest.</span></li>
+          <li><span class="year">2023</span><span class="what">Opening and building the promotional strategy for “Bauhaus Apartments” in Warsaw.</span></li>
+          <li><span class="year">2023</span><span class="what">Direction and production of 4 promotional videos for the Polish Tourist Organization – Israel Office.</span></li>
+          <li><span class="year">2020</span><span class="what">Creating the concept, producing and directing films for the Polish Institute in New York.</span></li>
+          <li><span class="year">2018</span><span class="what">Promotional activities with the Eat Poland Foundation in Tokyo, in cooperation with the Polish Institute.</span></li>
+          <!-- TODO confirm hotel name spelling with Monika -->
+          <li><span class="year">2016–2018</span><span class="what">Creating the concept and coordinating thematic events for Puro Hotels: Oko na Wrocław, Oko na Kraków, Oko na Poznań, Oko na Warszawę, Oko na Trójmiasto.</span></li>
+          <li><span class="year">2016</span><span class="what">Preparing the concept and producing the EAT POLAND project promoting Polish cuisine in the Visegrad countries for the Ministry of Foreign Affairs. Dinners in Berlin, Prague, Bratislava and Budapest.</span></li>
+          <li><span class="year">2015</span><span class="what">Preparing the concept and producing the EAT POLAND project promoting Polish cuisine in the Baltic countries for the Ministry of Foreign Affairs. Dinners in Riga, Tallinn, Helsinki and Stockholm.</span></li>
+          <!-- TODO title kept as in the original CV; ask Monika for the correct one -->
+          <li><span class="year">2015</span><span class="what">Preparing the concept and texts for the book “On polish see sh” for the Ministry of Foreign Affairs.</span></li>
+          <li><span class="year">2015</span><span class="what">Creating the concept for the book “Appetite for Poland” (Expo 2015) for PARP.</span></li>
+          <li><span class="year">2014</span><span class="what">Hosting the author’s program “Pin to Taste” on PIN radio.</span></li>
+          <li><span class="year">2006–2014</span><span class="what">Spokesperson and organizer of the PRZETWORY design-recycling festival (<a href="https://www.przetworydesign.com" target="_blank" rel="noopener">www.przetworydesign.com</a>).</span></li>
+          <li><span class="year">2011–2012</span><span class="what">Creating the concept and serving as editor-in-chief of “Smak” magazine.</span></li>
+          <li><span class="year">2010–2012</span><span class="what">Cooperation with Soho Factory: building the promotional strategy, website and Facebook fan page.</span></li>
+          <li><span class="year">2010</span><span class="what">Co-author of the book “Creative people, creative living in Warsaw”, Bęc Zmiana Foundation, Warsaw.</span></li>
+          <li><span class="year">2008–2010</span><span class="what">Collaboration with the New Horizons Film Festival, selection of festival films.</span></li>
+          <!-- TODO confirm: original CV said 2009-2001 and 2007-2001 -->
+          <li><span class="year">2001–2009</span><span class="what">Editor-in-chief of “GAGA magazine about beautiful childhood”, Valkea Media publishing house: conceptual and editorial work, production and styling of photo shoots.</span></li>
+          <li><span class="year">2001–2007</span><span class="what">Creating journalistic texts for the magazines “Exklusiv”, “Film”, “Voyage”, “Wysokie Obcasy”, “Życie jest piękne”, “Latarnik”, “Notes for 6-weeks”.</span></li>
+          <li><span class="year">2005–2006</span><span class="what">Cultural spokesperson of the Projekt Praga cultural festival in Warsaw (PZO), promoting the Soho Factory space.</span></li>
+          <li><span class="year">2005–2006</span><span class="what">Cooperation with the Grey Warsaw advertising agency in creating <a href="https://www.prowokent.pl" target="_blank" rel="noopener">www.prowokent.pl</a> on behalf of BAT. Creating the content of the entire site, conducting interviews, preparing the news section on fashion, architecture, design and technology.</span></li>
+          <li><span class="year">2003–2006</span><span class="what">Editor-in-chief of “Café” magazine, “LEEnia” and “Café by Reebok”, Direct Publishing.</span></li>
+          <li><span class="year">2000–2001</span><span class="what">Editor of the information department of “City Magazine” (Agora).</span></li>
+          <li><span class="year">2000–2001</span><span class="what">Running the promotion department at the Variety Theater in Warsaw.</span></li>
+          <li><span class="year">1992–1996</span><span class="what">Secretary of the editorial board of the monthly “Jazz Forum”.</span></li>
+        </ol>
+      </section>
+    </main>
+  </div>
+
+  <footer>© Monika Brzywczy</footer>
+</div>
+
+<script>
+  // Coloured markers: shapes and accent colours rotate down the list.
+  (function () {
+    var shapes = ["circle", "square", "triangle", "diamond"];
+    var colours = ["var(--yellow)", "var(--orange)", "var(--coral)"];
+    document.querySelectorAll("#timeline li").forEach(function (li, i) {
+      var m = document.createElement("span");
+      m.className = "marker m-" + shapes[i % shapes.length];
+      m.style.setProperty("--c", colours[i % colours.length]);
+      m.setAttribute("aria-hidden", "true");
+      li.insertBefore(m, li.firstChild);
+    });
+  })();
+</script>
+</body>
+</html>
