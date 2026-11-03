@@ -7,12 +7,12 @@
 <meta name="description" content="Monika Brzywczy – innovative editor-in-chief, concept developer and producer of publications and events, Warsaw.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Lora:wght@400;500&family=Red+Hat+Display:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Lora:wght@400;500&family=Red+Hat+Display:wght@300;400&family=Red+Hat+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #111;
     --muted: #6b6b6b;
-    --rule: #cfcfcf;
+    --rule: #8a8a8a;
     --paper: #fff;
     --yellow: #F7CE66;
     --orange: #F79A68;
@@ -20,6 +20,7 @@
     --serif: "Lora", Georgia, serif;
     --text: "Literata", Georgia, serif;
     --sans: "Red Hat Display", "Helvetica Neue", Arial, sans-serif;
+    --ui: "Red Hat Text", "Helvetica Neue", Arial, sans-serif;
   }
 
   * { box-sizing: border-box; }
@@ -28,128 +29,116 @@
     margin: 0;
     background: var(--paper);
     color: var(--ink);
-    font-family: var(--sans);
-    font-weight: 300;
-    font-size: 16px;
+    font-family: var(--ui);
+    font-weight: 400;
+    font-size: 15px;
     line-height: 1.6;
   }
   a { color: inherit; text-decoration-color: var(--orange); text-underline-offset: 3px; }
   a:hover { text-decoration-color: var(--coral); }
 
   .page {
-    max-width: 1120px;
     margin: 0 auto;
-    padding: 40px 20px 72px;
+    padding: 32px 20px 64px;
   }
 
-  /* ---------- Header ---------- */
-  .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 28px;
-    margin-bottom: 48px;
-  }
+  /* ---------- Left column: portrait, name ---------- */
+  .side { margin-bottom: 44px; }
   .portrait {
     position: relative;
-    width: 220px;
-    height: 250px;
-    flex: none;
+    width: min(64vw, 260px);
+    margin-right: calc(min(64vw, 260px) * 0.4);
   }
-  /* Signature shape: big yellow half-circle with a smaller orange one beside it */
+  .portrait img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 600 / 820;
+    object-fit: cover;
+    background: #f4f1ea;
+    color: transparent; /* hide alt text if the photo is missing */
+  }
+  /* Signature shape from the PDF: a yellow half-circle with a smaller
+     orange one under it, both growing out of the photo's right edge. */
   .portrait::before,
   .portrait::after {
     content: "";
     position: absolute;
-    bottom: 0;
-    border-radius: 999px 999px 0 0;
+    left: 100%;
+    border-radius: 0 999px 999px 0;
   }
+  /* aspect-ratio 1/2 keeps them true half-circles; 58.5% = yellow height (80% of width) over photo height */
   .portrait::before {
-    left: 0;
-    width: 200px;
-    height: 100px;
+    top: 0;
+    width: 40%;
+    aspect-ratio: 1 / 2;
     background: var(--yellow);
   }
   .portrait::after {
-    left: 150px;
-    width: 70px;
-    height: 35px;
+    top: 58.5%;
+    width: 18%;
+    aspect-ratio: 1 / 2;
     background: var(--orange);
-    z-index: 0;
-  }
-  .portrait img {
-    position: absolute;
-    left: 25px;
-    bottom: 0;
-    width: 150px;
-    height: 225px;
-    object-fit: cover;
-    object-position: 50% 20%;
-    border-radius: 75px 75px 0 0;
-    z-index: 1;
-    background: #f4f1ea;
-    color: transparent; /* hide alt text if the photo is missing */
   }
 
   h1 {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: clamp(2.6rem, 9vw, 4.6rem);
-    line-height: 1.02;
+    font-size: clamp(2.6rem, 10vw, 3.6rem);
+    line-height: 1.05;
     letter-spacing: -0.01em;
-    margin: 0;
+    margin: 28px 0 0;
   }
   .tagline {
     font-family: var(--sans);
     font-weight: 300;
-    font-size: clamp(1.1rem, 3.6vw, 1.45rem);
-    letter-spacing: 0.02em;
-    margin: 12px 0 0;
+    font-size: clamp(1.25rem, 5vw, 1.6rem);
+    margin: 6px 0 0;
   }
 
   /* ---------- Sections ---------- */
-  .layout {
+  .info {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 8px 72px;
+    gap: 0 48px;
   }
   section { margin-bottom: 40px; }
   h2 {
     font-family: var(--sans);
     font-weight: 300;
-    font-size: 0.95rem;
-    letter-spacing: 0.22em;
+    font-size: 1.75rem;
+    line-height: 1.2;
     text-transform: uppercase;
     margin: 0 0 16px;
-    padding-bottom: 8px;
+    padding-bottom: 6px;
     border-bottom: 1px solid var(--rule);
   }
   p { margin: 0 0 12px; }
   .profile p {
     font-family: var(--text);
-    font-size: 1.02rem;
-    line-height: 1.7;
+    font-size: 1rem;
+    line-height: 1.65;
   }
 
   dl { margin: 0; }
   dt {
-    font-weight: 500;
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
+    font-weight: 700;
     margin-top: 14px;
   }
   dt:first-child { margin-top: 0; }
-  dd { margin: 4px 0 0; }
-  dd span { white-space: nowrap; }
-  dd span + span::before { content: " · "; color: var(--muted); }
+  dd { margin: 2px 0 0; }
+  dd span { display: block; }
 
   .plain { list-style: none; margin: 0; padding: 0; }
-  .plain li { margin-bottom: 10px; }
-  .plain small { display: block; color: var(--muted); font-size: 0.9rem; }
+  .plain li { margin-bottom: 14px; }
+  .plain small { display: block; font-size: 1em; font-style: italic; }
+  .plain small + small { color: var(--muted); }
 
-  .contact a { font-size: 1.05rem; }
+  .contact a { text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+  .contact a:hover { text-decoration: underline; text-decoration-color: var(--orange); }
+  .contact svg { width: 20px; height: 20px; flex: none; }
 
   /* ---------- Experience ---------- */
   .timeline { list-style: none; margin: 0; padding: 0; }
@@ -157,10 +146,8 @@
     display: grid;
     grid-template-columns: 14px 1fr;
     column-gap: 14px;
-    padding: 14px 0;
-    border-bottom: 1px solid #ececec;
+    padding: 12px 0;
   }
-  .timeline li:last-child { border-bottom: 0; }
   .marker {
     grid-row: 1 / span 2;
     width: 12px;
@@ -169,25 +156,21 @@
     background: var(--c, var(--yellow));
   }
   .m-circle { border-radius: 50%; }
-  .m-square { }
-  .m-diamond { transform: rotate(45deg) scale(0.85); }
+  .m-diamond { transform: rotate(45deg) scale(0.8); }
   .m-triangle {
     background: none;
     width: 0; height: 0;
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
-    border-bottom: 12px solid var(--c, var(--yellow));
+    border-top: 12px solid var(--c, var(--yellow));
   }
   .year {
-    font-family: var(--sans);
-    font-weight: 500;
-    font-size: 0.88rem;
-    letter-spacing: 0.06em;
-    font-variant-numeric: tabular-nums;
+    font-family: var(--ui);
+    font-size: 0.95rem;
   }
   .what {
     font-family: var(--text);
-    font-size: 0.98rem;
+    font-size: 1rem;
     line-height: 1.6;
   }
 
@@ -199,47 +182,63 @@
     color: var(--muted);
   }
 
-  /* ---------- Desktop ---------- */
-  @media (min-width: 860px) {
-    .page { padding: 72px 40px 96px; }
-    .hero {
-      flex-direction: row;
-      align-items: flex-end;
-      gap: 48px;
-      margin-bottom: 64px;
+  /* ---------- Tablet: info in two columns ---------- */
+  @media (min-width: 640px) {
+    .info { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ---------- Desktop: portrait column stays put, the right side scrolls ---------- */
+  @media (min-width: 1000px) {
+    .page {
+      display: grid;
+      grid-template-columns: minmax(400px, 44%) minmax(0, 1fr);
+      max-width: 1440px;
+      padding: 0 48px 0 0;
     }
-    .portrait { width: 280px; height: 320px; }
-    .portrait::before { width: 260px; height: 130px; }
-    .portrait::after { left: 196px; width: 84px; height: 42px; }
-    .portrait img {
-      left: 35px; width: 190px; height: 290px;
-      border-radius: 95px 95px 0 0;
+    .side {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: 100vh;
+      margin: 0;
+      padding: 40px 24px 40px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-    .hero-text { padding-bottom: 18px; }
-    .layout { grid-template-columns: 320px 1fr; }
+    .portrait {
+      width: min(100% / 1.4, calc((100vh - 240px) * 600 / 820));
+      margin-right: 0;
+    }
+    .content {
+      padding: 72px 0 72px 24px;
+      max-width: 860px;
+    }
     .timeline li {
-      grid-template-columns: 14px 104px 1fr;
-      column-gap: 16px;
+      grid-template-columns: 100px 14px 1fr;
+      column-gap: 18px;
     }
-    .marker { grid-row: auto; }
+    .timeline .year { grid-column: 1; grid-row: 1; }
+    .marker { grid-column: 2; grid-row: 1; }
+    .what { grid-column: 3; grid-row: 1; }
   }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <header class="hero">
+  <header class="side">
     <div class="portrait">
-      <img src="monika-photo.jpg" alt="Portrait of Monika Brzywczy" width="190" height="290">
+      <img src="monika-photo.jpg" alt="Portrait of Monika Brzywczy" width="600" height="820">
     </div>
     <div class="hero-text">
-      <h1>Monika<br>Brzywczy</h1>
+      <h1>Monika Brzywczy</h1>
       <p class="tagline">Innovative editor-in-chief</p>
     </div>
   </header>
 
-  <div class="layout">
-    <aside>
+  <div class="content">
+    <div class="info">
       <section class="profile">
         <h2>Profile</h2>
         <p>I thrive on making things happen: building contacts, connecting people and promoting new, interesting initiatives. I keep my finger on the pulse and create avant-garde concepts for publications and events. My work is always marked by exceptional aesthetics and in-depth content.</p>
@@ -248,10 +247,10 @@
       <section>
         <h2>Skills</h2>
         <dl>
-          <dt>Languages</dt>
-          <dd><span>English: fluent</span> <span>French: high</span> <span>Russian: basic</span></dd>
-          <dt>Software</dt>
-          <dd><span>MS Office: proficient</span> <span>Adobe CC: basic</span></dd>
+          <dt>Languages / <em>level</em></dt>
+          <dd><span>English: <em>fluent</em></span><span>French: <em>high</em></span><span>Russian: <em>basic</em></span></dd>
+          <dt>Software / <em>level</em></dt>
+          <dd><span>MS Office: <em>proficient</em></span><span>Adobe CC: <em>basic</em></span></dd>
           <dt>Soft skills</dt>
           <dd>Ability to lead a team, work in a group, recruit new people and refresh the team; in-depth knowledge of the Warsaw journalistic, culinary and cultural environment.</dd>
         </dl>
@@ -260,8 +259,8 @@
       <section>
         <h2>Education</h2>
         <ul class="plain">
-          <li>Gender Studies<small>Warsaw University, ISNS, 1997–1998</small></li>
-          <li>Polish Philology<small>Warsaw University, 1992–1996</small></li>
+          <li>Gender Studies<small>Warsaw University, ISNS</small><small>1997–1998</small></li>
+          <li>Polish Philology<small>Warsaw University</small><small>1992–1996</small></li>
         </ul>
       </section>
 
@@ -272,10 +271,10 @@
 
       <section class="contact">
         <h2>Contact</h2>
-        <!-- Email only until Monika confirms. Phone and street address left out on purpose. -->
-        <p><a href="mailto:brzywczy@gmail.com">brzywczy@gmail.com</a></p>
+        <!-- Email only, as agreed with Monika. Phone and street address left out on purpose. -->
+        <p><a href="mailto:brzywczy@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 5 18.66l-1-1.73A8 8 0 1 1 20 12v1.5a1.5 1.5 0 0 1-3 0V12a5 5 0 1 0-1.48 3.54A3.5 3.5 0 0 0 22 13.5V12A10 10 0 0 0 12 2Zm0 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>brzywczy@gmail.com</a></p>
       </section>
-    </aside>
+    </div>
 
     <main>
       <section>
@@ -321,14 +320,17 @@
 </div>
 
 <script>
-  // Coloured markers: shapes and accent colours rotate down the list.
+  // Coloured markers: same shape/colour sequence as the PDF CV.
   (function () {
-    var shapes = ["circle", "square", "triangle", "diamond"];
-    var colours = ["var(--yellow)", "var(--orange)", "var(--coral)"];
+    var seq = [
+      ["circle", "--yellow"], ["square", "--coral"], ["triangle", "--orange"],
+      ["circle", "--coral"], ["diamond", "--orange"], ["triangle", "--yellow"]
+    ];
     document.querySelectorAll("#timeline li").forEach(function (li, i) {
+      var s = seq[i % seq.length];
       var m = document.createElement("span");
-      m.className = "marker m-" + shapes[i % shapes.length];
-      m.style.setProperty("--c", colours[i % colours.length]);
+      m.className = "marker m-" + s[0];
+      m.style.setProperty("--c", "var(" + s[1] + ")");
       m.setAttribute("aria-hidden", "true");
       li.insertBefore(m, li.firstChild);
     });
